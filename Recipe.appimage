@@ -11,6 +11,9 @@ mkdir ${BASEDIR}/$APP/
 cd build-cmake
 make install DESTDIR=${BASEDIR}/$APP/$APP.AppDir PREFIX=/usr
 
+# Adjust startup exec
+sed -i -e 's/env.*aud/aud/g' -e 's/ogg$/ogg;/g' ${BASEDIR}/$APP/$APP.AppDir/usr/share/applications/audacity.desktop
+
 ########################################################################
 # Build complete
 # Now creating the AppDir
@@ -22,6 +25,6 @@ wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/lin
 wget https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
 chmod +x linuxdeploy-x86_64.AppImage
 chmod +x linuxdeploy-plugin-gtk.sh
-./linuxdeploy-x86_64.AppImage --appimage-extract-and-run --appdir=${BASEDIR}/$APP/$APP.AppDir/ -o appimage --desktop-file=${BASEDIR}/$APP/$APP.AppDir/usr/local/share/applications/audacity.desktop --icon-file=${BASEDIR}/$APP/$APP.AppDir/usr/local/share/icons/hicolor/48x48/apps/audacity.png --plugin gtk
+./linuxdeploy-x86_64.AppImage --appimage-extract-and-run --appdir=${BASEDIR}/$APP/$APP.AppDir/ -o appimage --desktop-file=${BASEDIR}/$APP/$APP.AppDir/usr/share/applications/audacity.desktop --icon-file=${BASEDIR}/$APP/$APP.AppDir/usr/share/icons/hicolor/48x48/audacity.png --plugin gtk
 mkdir AppImage
-mv audacity*.AppImage AppImage/audacity-$VERSION-x86_64.AppImage
+mv Audacity*.AppImage AppImage/audacity-$VERSION-x86_64.AppImage

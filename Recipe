@@ -6,6 +6,6 @@ git clone https://github.com/audacity/audacity --depth 1 git
 cd ${BASEDIR}/git
 mkdir build-cmake
 cd build-cmake
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
 cmake --build .
 make -j4 .
