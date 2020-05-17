@@ -1,0 +1,11 @@
+#!/bin/bash
+export BASEDIR=/audacity
+mkdir ${BASEDIR}
+cd ${BASEDIR}
+git clone https://github.com/audacity/audacity --depth 1 git
+cd ${BASEDIR}/git
+mkdir build-cmake
+cd build-cmake
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+make -j4 .

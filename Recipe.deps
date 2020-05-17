@@ -1,0 +1,15 @@
+apt-get update
+apt-get install -y --force-yes g++ gcc build-essential libasound2-dev libgtk2.0-dev wget git fuse gpgv libid3tag0-dev libmad0-dev libmp3lame0 libsndfile1 libsoundtouch-dev libogg-dev libvorbis-dev libflac-dev libjack-jackd2-dev
+wget -O /tmp/cmake.sh https://github.com/Kitware/CMake/releases/download/v3.17.2/cmake-3.17.2-Linux-x86_64.sh
+sh /tmp/cmake.sh --skip-license
+apt-get clean
+
+# Build wxwidgets
+cd /
+git clone --recurse-submodules https://github.com/audacity/wxWidgets/ /wx
+cd /wx
+CXXFLAGS="-std=gnu++14" ./configure --enable-shared --disable-gtktest --disable-sdltest --with-gtk=2 --prefix=/usr
+make -j 4
+make install PREFIX=/usr
+cd ..
+rm -rf wxWidgets-3.1.3
